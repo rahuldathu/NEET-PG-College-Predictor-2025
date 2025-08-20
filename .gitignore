@@ -1,3 +1,9 @@
 *.log
 prompt*
 malformed_rows.log
+prompt
+test*.py
+cleaned_institutes.csv
+college_rankings.csv
+college_rankings_cleaned.csv
+fully_normalized.csv
