@@ -1,0 +1,62 @@
+prompt: so I have seat allocation for students csv files R1.csv, R2.csv, R3.csv for each rounds R1,R2,R3, and their respective columns are [R1_Sno,rank,R1_allotted_quota,R1_allotted_institute,R1_course,R1_allotted_category,R1_candidate_category,R1_remarks],[R2_Sno,rank,R1_allotted_quota,R1_allotted_institute,R1_course,R1_remarks,R2_allotted_quota,R2_allotted_institute,R2_course,R2_allotted_category,R2_candidate_category,R2_option_no,R2_remarks],[rank,R1_allotted_quota,R1_allotted_institute,R1_course,R1_remarks,R2_allotted_quota,R2_allotted_institute,R2_course,R2_remarks,R3_allotted_quota,R3_allotted_institute,R3_course,R3_allotted_category,R3_candidate_category,R3_option_no,R3_remarks]..., so the data is not so properly organized like in some csvs college name is used in short form etc, so what er trying to do is generating one csv file from entire data, so that the processing for future is easier. I will explain how the counselling works, so student can fill some choice and seat will be allocated as per some rules which are not the subject of interest.there will be three rounds of allocation and student can change(upgrade) their seat in each round. so we will consider the R3 seat as final if the data (in R3.csv)regarding that is not null in the R3 csv, in this case R3_allotted_institute is not null, if it is we will check the R2_allotted_institute. if it is not null then final seat of student is R2_allotted_institute, if R2_allotted_institute is also null then we can say that R1_allotted_institute is the final seat of the student. remember we are checking this entire data in R3.csv, so once we have the final seat allocation of all the students then we will go to the respective allocation csvs to gather the allotted category and candidate category of the student. The final csv must have rank,allotted quota(of final allocation),allotted institute(of final allocation), course(of final allocation), allotted category(of final allocation), candidate category(of final allocation), round(of final allocation), remarks(of final allocation). so give me a py code to generate a final seat allocation csv. and none of R1,R2,R3 csvs have header and the null entries are represented as "-",sample entry row [1,2,"sdasa",-] where the 4th entry is null.also sometimes there might be empty rows, so remove them, also just verify the rows if there are correct columns match, if ther eis a mismatch can u print them in log file along with their csv name , also use pandas as csvs are big 
+
+
+🔹 R3:
+
+From R3.csv:
+
+rank
+
+allotted_quota → R3_allotted_quota (index 9)
+
+allotted_institute → R3_allotted_institute (index 10)
+
+course → R3_course (index 11)
+
+From R3.csv (again):
+
+allotted_category → index 12
+
+candidate_category → index 13
+
+remarks → index 15
+
+🔹 R2:
+
+From R3.csv:
+
+rank
+
+allotted_quota → R2_allotted_quota (index 5)
+
+allotted_institute → R2_allotted_institute (index 6)
+
+course → R2_course (index 7)
+
+From R2.csv:
+
+allotted_category → index 10
+
+candidate_category → index 11
+
+remarks → index 12
+
+🔹 R1:
+
+From R3.csv:
+
+rank
+
+allotted_quota → R1_allotted_quota (index 1)
+
+allotted_institute → R1_allotted_institute (index 2)
+
+course → R1_course (index 3)
+
+From R1.csv:
+
+allotted_category → index 5
+
+candidate_category → index 6
+
+remarks → index 7
