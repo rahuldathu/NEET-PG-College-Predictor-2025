@@ -1,0 +1,3 @@
+*.log
+prompt*
+malformed_rows.log
